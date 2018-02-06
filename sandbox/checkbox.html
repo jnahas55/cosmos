@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Dashboard - Sample </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='shortcut icon' type='image/x-icon' href='C:\Users\jorge\Desktop\iot_Tesis\cosmos.jpg' /> 
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+
+	<!-- Adding Jquery library from CDN (Content Delivery Network) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var jsonObject;
+
+			$.getJSON("https://jsonplaceholder.typicode.com/users", function(result){
+						
+					console.log(result);
+					console.log(JSON.stringify(result));
+					var elements = JSON.stringify(result);
+					console.log(elements);
+					jsonObject = JSON.parse(elements);
+					console.log(jsonObject);
+					console.log(jsonObject[0]);
+					console.log(jsonObject.length);
+					console.log(jsonObject[0].name);
+
+					for(i=0; i<jsonObject.length; i++){
+						var jsonstring = jsonObject[i].name;
+						var o = new Option(jsonstring, jsonstring); /// jquerify the DOM object 'o' so we can use the html method
+						
+						$('#sarasa').append('<label class="checkbox-inline"><input type="checkbox" value="'+jsonstring+'">'+jsonstring+'</label>');
+
+						$(o).html(jsonstring); 
+						$('#selecting').append(o);
+					}
+
+				});
+	});
+	</script>
+
+</head>
+<body>
+	<!--select id="selecting" class="selectpicker" multiple data-max-options="4" title="Choose one of the following:">
+		<option>Mustard</option>
+		<option>Ketchup</option>
+		<option>Relish</option>
+		<option>Caca</option>
+		<option>Cacaaaa</option>
+		<option>fruta</option>
+	</select-->
+
+	<div id="sarasa"></div>
+
+	<select id="selecting" data-max-options="4"></select>
+</body>
+</html>
