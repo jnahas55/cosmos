@@ -1,6 +1,7 @@
 package cosmos.frontend.middle.api.service;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,7 @@ public class MiddlewareService {
 		}
 	}
 
-	public ResponseEntity<DataPoint[]> getDataPointsForDataStream(String dataStreamName) throws MiddlewareServiceException{
+	public ResponseEntity<List<DataPoint>> getDataPointsForDataStream(String dataStreamName) throws MiddlewareServiceException{
 		logger.debug(" Entering getDataPointsForDataStream() ");
 		
 		long before = Calendar.getInstance().getTimeInMillis();
@@ -58,14 +59,14 @@ public class MiddlewareService {
 
 		// FIXME El mapeo de JSON a Object debería ser directo, dado por los MessageConverters del restTemplate
 		Gson g = new Gson();
-		DataPoint[] fromJson = g.fromJson(response.getBody(), DataPoint[].class);
+		DataStream fromJson = g.fromJson(response.getBody(), DataStream.class);
 		
 		System.out.println(fromJson);
 		
 		logger.debug(" Response after deserialization: " + fromJson);
 		
 		if(response.getStatusCode().is2xxSuccessful()){
-			return new ResponseEntity<DataPoint[]>(fromJson, response.getStatusCode()); 
+			return new ResponseEntity<List<DataPoint>>(fromJson.getDataPoints(), response.getStatusCode()); 
 		}else{
 			logger.error(" Problem when executing getAvailableDataStreams() ");
 			throw new MiddlewareServiceException(SOME_OTHER_EXCEPTION + response.getStatusCodeValue());

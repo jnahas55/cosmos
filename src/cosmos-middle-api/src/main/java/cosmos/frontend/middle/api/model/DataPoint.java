@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class DataPoint {
 	
-	private Long timestamp;
-	private int value;
+	private String timestamp;
+	private String value;
 
 }

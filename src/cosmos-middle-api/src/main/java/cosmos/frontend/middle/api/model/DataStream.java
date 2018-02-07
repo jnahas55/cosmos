@@ -1,6 +1,7 @@
 package cosmos.frontend.middle.api.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -9,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
+ 
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Getter
 @Setter
@@ -22,5 +23,6 @@ public class DataStream{
 	private String name;
 	private double currentValue;
 	private Date lastUpdate;
+	private List<DataPoint> dataPoints;
 	
 }
