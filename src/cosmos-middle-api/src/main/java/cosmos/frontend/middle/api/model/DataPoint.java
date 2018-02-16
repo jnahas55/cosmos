@@ -14,6 +14,6 @@ import lombok.ToString;
 public class DataPoint {
 	
 	private String timestamp;
-	private String value;
+	private double value;
 
 }

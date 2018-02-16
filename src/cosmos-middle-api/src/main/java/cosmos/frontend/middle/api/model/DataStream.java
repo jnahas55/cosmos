@@ -1,6 +1,5 @@
 package cosmos.frontend.middle.api.model;
 
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,7 +21,7 @@ public class DataStream{
 
 	private String name;
 	private double currentValue;
-	private Date lastUpdate;
+	private String lastUpdate;
 	private List<DataPoint> dataPoints;
 	
 }
