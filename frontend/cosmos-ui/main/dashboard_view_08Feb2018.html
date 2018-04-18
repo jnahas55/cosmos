@@ -18,6 +18,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+
 	<script type="text/javascript">
 
 		$(document).ready(function(){
@@ -61,6 +63,7 @@
 				}
 			});
 
+			
 		});
 
 
@@ -496,6 +499,8 @@ function displayCharts(){
 </head>
 <body>
 
+	<div id="app">
+
 	<!-- Side Nav for burguer menu -->
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -508,7 +513,7 @@ function displayCharts(){
 	<!-- Main Title and delimiter -->
 	<div id="main">
 		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-		<h1 id="cosmosTitle"><strong>Cosmos Web Interface<strong></h1>
+		<h1 id="cosmosTitle"><strong>Cosmos Web Interface</strong></h1>
 	</div>
 
 	<!-- Select options for data stream availables -->
@@ -519,7 +524,8 @@ function displayCharts(){
 
 	<!-- Separator for Data Streams -->
 	<div class="dashboardSeparator">
-		<h1 id="contentSeparator"><strong>Data Streams</strong></h1>
+		<!--h1 id="contentSeparator"><strong>Data Streams</strong></h1-->
+		<my-test>Data Streams</my-test>
 	</div>
 
 	<!-- div for drawing the data stream charts -->
@@ -527,7 +533,8 @@ function displayCharts(){
 
 	<!-- Separator for Actions and Commands -->
 	<div class="dashboardSeparator">
-		<h1 id="contentSeparator"><strong>Actions and Commands</strong></h1>
+		<!--h1 id="contentSeparator"><strong>Actions and Commands</strong></h1-->
+		<my-test>Actions and Commands</my-test>
 	</div>
 
 	<!-- div for showing the recently/most executed actions -->
@@ -602,6 +609,17 @@ function displayCharts(){
 			<button type="submit" class="btn btn-primary">Define Command</button>
 		</form>
 	</div>
+	</div>
 
+	<script type="text/javascript">
+		
+				Vue.component('my-test', {
+				props:['title'],
+				//template:'<h1 id="contentSeparator"><strong>{{title}}</strong></h1>'
+				template:'<h1 id="contentSeparator"><strong><slot></slot></strong></h1>'
+			})
+
+			new Vue({el:"#app"})
+	</script>
 </body>
 </html>
